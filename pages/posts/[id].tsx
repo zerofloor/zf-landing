@@ -213,7 +213,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       pageId: pageId,
       postData: postData,
     },
-    revalidate: 10,
+    revalidate: 60,
   };
 };
 

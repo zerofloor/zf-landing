@@ -2,6 +2,8 @@ import { Client } from "@notionhq/client";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
+import Image from 'next/image'
+
 
 let listNumber = 0;
 const Block = ({ children, block }: { children: String; block: any }) => {
@@ -217,8 +219,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ImageBlock = ({ block }: { block: { [key: string]: any } }) => {
   return (
-    <>
-      <img src={block.image.file.url} width={"100%"} className="mx-auto my-4" />
-    </>
+    <Image
+    src={block.image.file.url}
+    alt="Landscape picture"
+    width={"100%"}
+    height={"50%"}
+    layout={"responsive"}
+    className="mx-auto my-4"
+    />
   );
 };

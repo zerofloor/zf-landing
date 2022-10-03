@@ -5,7 +5,7 @@ import { BsTwitter } from "react-icons/bs";
 import { FaTelegramPlane } from "react-icons/fa";
 import { SiDiscord } from "react-icons/si";
 import userData from "../../userData";
-// import Image from 'next/image';
+import Image from 'next/image';
 
 const Profile = () => {
   useEffect(() => {
@@ -26,14 +26,8 @@ const Profile = () => {
     >
       <div id="profile" className="w-fit">
         <div className="scale-80 flex-col sm:flex-row  gap-y-6 gap-x-8 sm:scale-75 md:scale-90 lg:scale-100 flex justify-between items-center sm:gap-x-16 mt-12">
-          <img src="./images/pfp.jpg" className="rounded-full w-36" />
-          {/* <Image
-          src={"/images/pfp.jpg"}
-          alt="Landscape picture"
-          width={"100%"}
-          height={"100%"}
-          className="rounded-full w-36"
-          /> */}
+          {/* eslint-disable @next/next/no-img-element */}
+          <img src="./images/pfp.jpg" className="rounded-full w-36" alt="pfp" />
           <div
             id="profileText"
             className="profileText flex flex-col items-center sm:block"

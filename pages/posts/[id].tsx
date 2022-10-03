@@ -22,7 +22,7 @@ const Block = ({ children, block }: { children: String; block: any }) => {
     case "numbered_list_item":
       listNumber++;
       return (
-        <div className="ml-1" key={listNumber} >
+        <div className="ml-1" key={listNumber / 2} >
           <span className="text-sm">{listNumber / 2}.</span> {children}
         </div>
       );
@@ -109,7 +109,7 @@ const Post = ({
       }
     };
     update();
-  }, []);
+  }, [pageId]);
   return (
     <>
       <Head>
@@ -136,7 +136,7 @@ const Post = ({
         <br />
         {postData.map((x: any, index: any) => {
           if (x.type === "image") {
-            return <ImageBlock block={x} />;
+            return <ImageBlock block={x} key={index} />;
           }
           return (
             <Block

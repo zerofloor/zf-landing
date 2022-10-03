@@ -32,7 +32,7 @@ body {
 }
 .profileleft {
   transform: scale(0.63) translateY(-34vh);
-  margin-right: 62%;
+  margin-right: 75%;
 }
 #profile div {
   transition: 1s;

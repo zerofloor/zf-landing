@@ -1,6 +1,6 @@
 const userData = {
-  name: "zerofloor.xyz",
-  bio: "web3 fund",
+  name: "zerofloor",
+  bio: "capital",
   quote: (
     <>
       A crypto native <span className="

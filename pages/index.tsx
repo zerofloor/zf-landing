@@ -32,35 +32,66 @@ const Home = ({
         <title key="title">{`web3 crypto fund - ${userData.name}`}</title>
       </Head>
       <Profile />
-      <div className="mt-12 text-xl mb-20">{userData.quote}</div>
-      <div className="mt-12 text-xl mb-20">
-        AUM:{" "}
-        {fundData.aum.toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-        })}
+      {/* <div className="mt-12 text-xl mb-20">{userData.quote}</div> */}
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+        <h2 className="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-white-900 sm:text-4xl md:mx-auto">
+          {userData.quote}
+        </h2>
+        <p className="text-base text-white-700 md:text-lg">
+        Our team specializes in portfolio management, token design, decentralized networks, research, trading, brand strategy, and regulation.
+        </p>
       </div>
-      <div className="mt-12 text-xl mb-20">
-        Capital Contributed:{" "}
-        {fundData.totalCapitalContributed.toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-        })}
+      <div className="relative w-full p-px mx-auto mb-4 overflow-hidden transition-shadow duration-300 border rounded lg:mb-8 lg:max-w-4xl group hover:shadow-xl">
+        <div className="absolute bottom-0 left-0 w-full h-1 duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
+        <div className="absolute bottom-0 left-0 w-1 h-full duration-300 origin-bottom transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
+        <div className="absolute top-0 left-0 w-full h-1 duration-300 origin-right transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
+        <div className="absolute bottom-0 right-0 w-1 h-full duration-300 origin-top transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
+        <div className="relative flex flex-col items-center h-full py-10 duration-300 bg-black rounded-sm transition-color sm:items-stretch sm:flex-row">
+          <div className="px-12 py-8 text-center">
+            <h6 className="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl">
+            {fundData.aum.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 0,
+            })}
+            </h6>
+            <p className="text-center md:text-base">
+              Assets Under Management
+            </p>
+          </div>
+          <div className="w-56 h-1 transition duration-300 transform bg-gray-300 rounded-full group-hover:bg-deep-purple-accent-400 group-hover:scale-110 sm:h-auto sm:w-1" />
+          <div className="px-12 py-8 text-center">
+            <h6 className="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl">
+            {fundData.currentPrice.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 4,
+            })}
+            </h6>
+            <p className="text-center md:text-base">
+              ZSL Price
+            </p>
+          </div>
+          <div className="w-56 h-1 transition duration-300 transform bg-gray-300 rounded-full group-hover:bg-deep-purple-accent-400 group-hover:scale-110 sm:h-auto sm:w-1" />
+          <div className="px-12 py-8 text-center">
+            <h6 className="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl">
+              {fundData.roi.toLocaleString("en-US", {
+                style: "percent",
+                maximumFractionDigits: 2,
+              })}
+            </h6>
+            <p className="text-center md:text-base">
+            Return of Investment
+            </p>
+          </div>
+        </div>
       </div>
-      <div className="mt-12 text-xl mb-20">
-        Price:{" "}
-        {fundData.currentPrice.toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-          maximumFractionDigits: 4,
-        })}
-      </div>
-      <div className="mt-12 text-xl mb-20">
-        ROI:{" "}
-        {fundData.roi.toLocaleString("en-US", {
-          style: "percent",
-          maximumFractionDigits: 2,
-        })}
+      <p className="mx-auto mb-4 text-white-600 sm:text-center lg:max-w-2xl lg:mb-6 md:px-16">
+      Across seed, venture, and liquid stages
+      zerofloor partners with top leaders 
+      to shape web3.
+      </p>
       </div>
       {/* <span className="text-sm mb-3">investments</span>
       <Investments /> */}

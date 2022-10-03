@@ -32,9 +32,15 @@ const Profile = () => {
             id="profileText"
             className="profileText flex flex-col items-center sm:block"
           >
-            <h1 className="font-medium text-3xl w-max">{userData.name}</h1>
-            <div className=" text-gray-200 mt-1 mb-4">{userData.bio}</div>
-            <div className="flex items-center text-xl gap-3">
+            <h1 className="font-medium text-3xl w-max">zero<span className="
+            bg-clip-text
+            font-extrabold
+            text-transparent
+            bg-gradient-to-r 
+            from-purple-400
+            to-pink-600">floor</span></h1>
+            {/* <div className=" text-gray-200 mt-1 mb-4">{userData.bio}</div> */}
+            <div className="flex items-center text-xl gap-3 mt-8">
               {userData.twitter && (
                 <a href={userData.twitter} target="_blank" rel="noreferrer">
                   <BsTwitter />

@@ -25,20 +25,20 @@ const VerticalNav = ({
         <StyledLink setMenuOpen={setMenuOpen} href="/">
           home
         </StyledLink>
-        <StyledLink setMenuOpen={setMenuOpen} href="/posts">
-          posts
-        </StyledLink>
-        <StyledLink setMenuOpen={setMenuOpen} href="/projects">
-          projects
-        </StyledLink>
         <a
           href="https://app.smartfunds.xyz/#/funds/0x2347254d5e6ee2505466452910379cb72ce5dc89"
           target="_blank"
           rel="noreferrer"
           className="text-2xl w-fit"
         >
-          performance
+          dashboard
         </a>
+        <StyledLink setMenuOpen={setMenuOpen} href="/posts">
+          posts
+        </StyledLink>
+        <StyledLink setMenuOpen={setMenuOpen} href="/projects">
+          projects
+        </StyledLink>
       </div>
     </div>
   );

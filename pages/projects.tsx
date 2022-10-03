@@ -11,7 +11,7 @@ const ProjectsPage = ({
   return (
     <>
       <Head>
-        <title>projects - zerofloor.xyz</title>
+        <title key="title">{`projects - ${userData.name}`}</title>
       </Head>
       <div className="flex flex-col w-full items-center mt-8">
         <h1 className="mb-3">projects</h1>

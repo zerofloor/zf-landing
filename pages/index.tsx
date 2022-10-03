@@ -8,7 +8,7 @@ import Contact from "../components/Home/Contact/Contact";
 import userData from "../components/userData";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
-import Stats from "../components/Home/Stats/Stats";
+// import Stats from "../components/Home/Stats/Stats";
 
 
 const Home = ({
@@ -23,7 +23,7 @@ const Home = ({
   return (
     <>
       <Head>
-        <title>web3 crypto fund - zerofloor.xyz</title>
+        <title key="title">{`web3 crypto fund - ${userData.name}`}</title>
       </Head>
       <Profile />
       <div className="mt-12 text-xl mb-20">{userData.quote}</div>

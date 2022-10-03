@@ -2,7 +2,7 @@ import { Client } from "@notionhq/client";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
-import Image from 'next/image'
+import Image from 'next/image';
 
 
 let listNumber = 0;
@@ -22,7 +22,7 @@ const Block = ({ children, block }: { children: String; block: any }) => {
     case "numbered_list_item":
       listNumber++;
       return (
-        <div className="ml-1">
+        <div className="ml-1" key={listNumber} >
           <span className="text-sm">{listNumber / 2}.</span> {children}
         </div>
       );
@@ -113,7 +113,7 @@ const Post = ({
   return (
     <>
       <Head>
-        <title>{postProperties.Name.title[0].plain_text} - zerofloor.xyz</title>
+        <title key="title">{postProperties.Name.title[0].plain_text}</title>
       </Head>
       <div className="mt-6 sm:ml-12 sm:mt-12 flex flex-col gap-y-1 w-10/12  sm:w-3/5 md:w-1/2">
         <h1 className="text-3xl sm:text-3xl">

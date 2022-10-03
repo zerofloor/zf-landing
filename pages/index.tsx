@@ -14,7 +14,6 @@ import { BsArrowRight } from "react-icons/bs";
 const Home = ({
   posts,
   projects,
-  stats,
 }: {
   posts: Array<{ [key: string]: any }>;
   projects: Array<{ [key: string]: any }>;
@@ -29,7 +28,6 @@ const Home = ({
       <div className="mt-12 text-xl mb-20">{userData.quote}</div>
       {/* <span className="text-sm mb-3">investments</span>
       <Investments /> */}
-      {/* <Stats /> */}
       <span className="text-sm mt-16 mb-3">updates</span>
       <Posts posts={posts} />
       <Link href="/posts">

@@ -9,15 +9,22 @@ import userData from "../components/userData";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 // import Stats from "../components/Home/Stats/Stats";
-
+import BigNumber from "bignumber.js";
 
 const Home = ({
   posts,
   projects,
+  fundData,
 }: {
   posts: Array<{ [key: string]: any }>;
   projects: Array<{ [key: string]: any }>;
   stats: Array<{ [key: string]: any }>;
+  fundData: {
+    aum: number;
+    totalCapitalContributed: number;
+    currentPrice: number;
+    roi: number;
+  };
 }) => {
   return (
     <>
@@ -26,6 +33,35 @@ const Home = ({
       </Head>
       <Profile />
       <div className="mt-12 text-xl mb-20">{userData.quote}</div>
+      <div className="mt-12 text-xl mb-20">
+        AUM:{" "}
+        {fundData.aum.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })}
+      </div>
+      <div className="mt-12 text-xl mb-20">
+        Capital Contributed:{" "}
+        {fundData.totalCapitalContributed.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })}
+      </div>
+      <div className="mt-12 text-xl mb-20">
+        Price:{" "}
+        {fundData.currentPrice.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 4,
+        })}
+      </div>
+      <div className="mt-12 text-xl mb-20">
+        ROI:{" "}
+        {fundData.roi.toLocaleString("en-US", {
+          style: "percent",
+          maximumFractionDigits: 2,
+        })}
+      </div>
       {/* <span className="text-sm mb-3">investments</span>
       <Investments /> */}
       <span className="text-sm mt-16 mb-3">updates</span>
@@ -84,10 +120,59 @@ export async function getStaticProps() {
       },
     ],
   });
+  // fetch fund data from the graph endpoint
+  const resp = await fetch(
+    "https://api.thegraph.com/subgraphs/name/smart-money-finance/smartfunds-v2-polygon",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        query: `{
+                  funds(where: { id: "0x2347254d5e6ee2505466452910379cb72ce5dc89" }, first: 1) {
+                    initialPrice
+                    latestNav {
+                      aum
+                      supply
+                      totalCapitalContributed
+                    }
+                  }
+                }
+              `,
+      }),
+    }
+  );
+  // extract all values from the json response
+  const respJson = await resp.json();
+  const { initialPrice, latestNav } = respJson.data.funds[0];
+  const { aum, totalCapitalContributed, supply } = latestNav;
+  // convert units and calculate roi with BigNumber.js
+  const initialPriceBN = new BigNumber(initialPrice).div(
+    new BigNumber(10).pow(18)
+  );
+  const aumBN = new BigNumber(aum).div(new BigNumber(10).pow(6));
+  const supplyBN = new BigNumber(supply).div(new BigNumber(10).pow(6));
+  const totalCapitalContributedBN = new BigNumber(totalCapitalContributed).div(
+    new BigNumber(10).pow(6)
+  );
+  let currentPriceBN = aumBN.div(supplyBN);
+  if (currentPriceBN.isNaN()) {
+    currentPriceBN = initialPriceBN;
+  }
+  const roiBN = currentPriceBN.div(initialPriceBN).minus(1);
+  // convert bignumbers to regular js numbers
+  const aumNumber = aumBN.toNumber();
+  const totalCapitalContributedNumber = totalCapitalContributedBN.toNumber();
+  const currentPriceNumber = currentPriceBN.toNumber();
+  const roiNumber = roiBN.toNumber();
   return {
     props: {
       posts: postsResponse.results,
       projects: projectsResponse.results,
+      fundData: {
+        aum: aumNumber,
+        totalCapitalContributed: totalCapitalContributedNumber,
+        currentPrice: currentPriceNumber,
+        roi: roiNumber,
+      },
     },
     revalidate: 60,
   };

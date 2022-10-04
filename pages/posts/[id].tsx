@@ -3,6 +3,8 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import Image from 'next/image';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 
 
 let listNumber = 0;
@@ -189,6 +191,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pageResponse: any = await notion.pages.retrieve({ page_id: pageId });
   let postProperties = pageResponse.properties;
 
+  const locale = "en";
+
   const results = response.results;
   const postData = results.map((x: any) => {
     const type = x.type;
@@ -209,6 +213,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common"])),
       postProperties: postProperties,
       pageId: pageId,
       postData: postData,

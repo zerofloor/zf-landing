@@ -3,6 +3,8 @@ import type { AppProps } from "next/app";
 import Layout from "../components/Layout/Layout";
 import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
+import i18n from 'i18next';
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {

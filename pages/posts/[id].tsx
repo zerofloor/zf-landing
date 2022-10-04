@@ -180,7 +180,7 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale = "en" }) => {
   const pageId: any = params!.id;
   const notion = new Client({ auth: process.env.NOTION_KEY });
 
@@ -190,8 +190,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
   const pageResponse: any = await notion.pages.retrieve({ page_id: pageId });
   let postProperties = pageResponse.properties;
-
-  const locale = "en";
 
   const results = response.results;
   const postData = results.map((x: any) => {

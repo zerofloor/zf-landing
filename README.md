@@ -2,10 +2,13 @@ This the [zerofloor.xyz](https://zerofloor.xyz/) landing page bootstrapped with 
 
 ## Getting Started
 
-First, run the development server:
+First, create a `.env:` file using as example the `.env.local.example` file.
+
+Run the development server:
 
 ```bash
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+

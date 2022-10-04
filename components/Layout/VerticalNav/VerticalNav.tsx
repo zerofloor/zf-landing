@@ -31,6 +31,15 @@ const VerticalNav = ({
         <StyledLink setMenuOpen={setMenuOpen} href="/">
         {t("menu.Home")}
         </StyledLink>
+        <StyledLink setMenuOpen={setMenuOpen} href="/posts">
+        {t("menu.Fund")}
+        </StyledLink>
+        <StyledLink setMenuOpen={setMenuOpen} href="/portfolio">
+        {t("menu.Portfolio")}
+        </StyledLink>
+        <StyledLink setMenuOpen={setMenuOpen} href="/posts">
+        {t("menu.Updates")}
+        </StyledLink>
         <a
           href="https://app.smartfunds.xyz/#/funds/0x2347254d5e6ee2505466452910379cb72ce5dc89"
           target="_blank"
@@ -39,12 +48,6 @@ const VerticalNav = ({
         >
           {t("menu.Dashboard")}
         </a>
-        <StyledLink setMenuOpen={setMenuOpen} href="/posts">
-        {t("menu.Updates")}
-        </StyledLink>
-        <StyledLink setMenuOpen={setMenuOpen} href="/portfolio">
-        {t("menu.Portfolio")}
-        </StyledLink>
         <LocaleSwitcher />
       </div>
     </div>

@@ -1,7 +1,6 @@
-import Investments from "../components/Home/Investments/Investments";
 import Posts from "../components/Home/Posts/Posts";
 import Profile from "../components/Home/Profile/Profile";
-import Projects from "../components/Home/Projects/Projects";
+import Portfolio from "../components/Home/Portfolio/Portfolio";
 import { Client } from "@notionhq/client";
 import Head from "next/head";
 import Contact from "../components/Home/Contact/Contact";
@@ -10,14 +9,16 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 // import Stats from "../components/Home/Stats/Stats";
 import BigNumber from "bignumber.js";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home = ({
   posts,
-  projects,
+  portfolio,
   fundData,
 }: {
   posts: Array<{ [key: string]: any }>;
-  projects: Array<{ [key: string]: any }>;
+  portfolio: Array<{ [key: string]: any }>;
   stats: Array<{ [key: string]: any }>;
   fundData: {
     aum: number;
@@ -26,6 +27,7 @@ const Home = ({
     roi: number;
   };
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Head>
@@ -36,10 +38,16 @@ const Home = ({
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <h2 className="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-white-900 sm:text-4xl md:mx-auto">
-          {userData.quote}
+          {t("home.A crypto native")} <span className="
+            bg-clip-text
+            font-extrabold
+            text-transparent
+            bg-gradient-to-r 
+            from-purple-400
+            to-pink-600">{t("home.web3 fund")}</span>
         </h2>
         <p className="text-base text-white-700 md:text-lg">
-        Our team specializes in portfolio management, token design, decentralized networks, research, trading, brand strategy, and regulation.
+        {t("home.Home description")}
         </p>
       </div>
       <div className="relative w-full p-px mx-auto mb-4 overflow-hidden transition-shadow duration-300 border rounded lg:mb-8 lg:max-w-4xl group hover:shadow-xl">
@@ -57,7 +65,7 @@ const Home = ({
             })}
             </h6>
             <p className="text-center md:text-base">
-              Assets Under Management
+              {t("home.Assets Under Management")}
             </p>
           </div>
           <div className="w-56 h-1 transition duration-300 transform bg-gray-300 rounded-full group-hover:bg-deep-purple-accent-400 group-hover:scale-110 sm:h-auto sm:w-1" />
@@ -70,7 +78,7 @@ const Home = ({
             })}
             </h6>
             <p className="text-center md:text-base">
-              ZSL Price
+            {t("home.ZSL Price")}
             </p>
           </div>
           <div className="w-56 h-1 transition duration-300 transform bg-gray-300 rounded-full group-hover:bg-deep-purple-accent-400 group-hover:scale-110 sm:h-auto sm:w-1" />
@@ -82,31 +90,29 @@ const Home = ({
               })}
             </h6>
             <p className="text-center md:text-base">
-            Return of Investment
+            {t("home.Return of Investment")}
             </p>
           </div>
         </div>
       </div>
       <p className="mx-auto mb-4 text-white-600 sm:text-center lg:max-w-2xl lg:mb-6 md:px-16">
-      Across seed, venture, and liquid stages
-      zerofloor partners with top leaders 
-      to shape web3.
+      {t("home.Across")}
       </p>
       </div>
       {/* <span className="text-sm mb-3">investments</span>
       <Investments /> */}
-      <span className="text-sm mt-16 mb-3">updates</span>
+      <span className="text-sm mt-16 mb-3">{t("home.updates")}</span>
       <Posts posts={posts} />
       <Link href="/posts">
         <a className="mt-6 text-gray-300 flex items-center gap-x-2 underline">
-          see more updates <BsArrowRight />
+        {t("home.see more updates")} <BsArrowRight />
         </a>
       </Link>
-      <span className="text-sm mt-24 mb-3">projects</span>
-      <Projects projects={projects} />
-      <Link href="/projects">
+      <span className="text-sm mt-24 mb-3">{t("home.portfolio")}</span>
+      <Portfolio portfolio={portfolio} />
+      <Link href="/portfolio">
         <a className="mt-4 text-gray-300 flex items-center gap-x-2 underline">
-          see more projects <BsArrowRight />
+        {t("home.see more portfolio")} <BsArrowRight />
         </a>
       </Link>
       <Contact />
@@ -117,7 +123,7 @@ const Home = ({
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getStaticProps( { locale} : {locale: any} ) {
   const notion = new Client({ auth: process.env.NOTION_KEY });
   const postsResponse = await notion.databases.query({
     database_id: process.env.NOTION_POSTS_DATABASE_ID!,
@@ -132,8 +138,8 @@ export async function getStaticProps() {
       ],
     },
   });
-  const projectsResponse = await notion.databases.query({
-    database_id: process.env.NOTION_PROJECTS_DATABASE_ID!,
+  const portfolioResponse = await notion.databases.query({
+    database_id: process.env.NOTION_PORTFOLIO_DATABASE_ID!,
     filter: {
       and: [
         {
@@ -196,8 +202,9 @@ export async function getStaticProps() {
   const roiNumber = roiBN.toNumber();
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common"])),
       posts: postsResponse.results,
-      projects: projectsResponse.results,
+      portfolio: portfolioResponse.results,
       fundData: {
         aum: aumNumber,
         totalCapitalContributed: totalCapitalContributedNumber,

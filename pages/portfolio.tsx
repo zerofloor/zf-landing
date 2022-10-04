@@ -1,21 +1,22 @@
 import { Client } from "@notionhq/client";
 import Head from "next/head";
-import { BsGithub } from "react-icons/bs";
-import Projects from "../components/Home/Projects/Projects";
+import Portfolio from "../components/Home/Portfolio/Portfolio";
 import userData from "../components/userData";
-const ProjectsPage = ({
-  projects,
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+const PortfolioPage = ({
+  portfolio,
 }: {
-  projects: Array<{ [key: string]: any }>;
+  portfolio: Array<{ [key: string]: any }>;
 }) => {
   return (
     <>
       <Head>
-        <title key="title">{`projects - ${userData.name}`}</title>
+        <title key="title">{`portfolio - ${userData.name}`}</title>
       </Head>
       <div className="flex flex-col w-full items-center mt-8">
-        <h1 className="mb-3">projects</h1>
-        <Projects projects={projects} />
+        <h1 className="mb-3">portfolio</h1>
+        <Portfolio portfolio={portfolio} />
       </div>
       {/* <a
         href={userData.github}
@@ -28,13 +29,13 @@ const ProjectsPage = ({
     </>
   );
 };
-export default ProjectsPage;
+export default PortfolioPage;
 
-export async function getStaticProps() {
+export async function getStaticProps( { locale} : {locale: any} ) {
   const notion = new Client({ auth: process.env.NOTION_KEY });
 
-  const projectsResponse = await notion.databases.query({
-    database_id: process.env.NOTION_PROJECTS_DATABASE_ID!,
+  const portfolioResponse = await notion.databases.query({
+    database_id: process.env.NOTION_PORTFOLIO_DATABASE_ID!,
     sorts: [
       {
         property: "Rank",
@@ -44,7 +45,8 @@ export async function getStaticProps() {
   });
   return {
     props: {
-      projects: projectsResponse.results,
+      ...(await serverSideTranslations(locale, ["common"])),
+      portfolio: portfolioResponse.results,
     },
     revalidate: 10,
   };

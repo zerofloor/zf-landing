@@ -1,0 +1,25 @@
+{
+    "home": {
+      "A crypto native": "A crypto native",
+      "web3 fund": "web3 fund",
+      "Home description": "Our team specializes in portfolio management, token design, decentralized networks, research, trading, brand strategy, and regulation.",
+      "Assets Under Management": "Assets Under Management",
+      "ZSL Price": "ZSL Price",
+      "Return of Investment": "Return of Investment",
+      "Across": "Across seed, venture, and liquid stages zerofloor partners with top leaders to shape web3.",
+      "updates": "updates",
+      "see more updates": "see more updates",
+      "portfolio": "portfolio",
+      "see more portfolio": "see more portfolio"
+    },
+    "contact": {
+        "do you want to start investing?": "do you want to start investing?",
+        "send us a message": "send us a message"
+    },
+    "menu": {
+      "Home": "home",
+      "Dashboard": "dashboard",
+      "Updates": "updates",
+      "Portfolio": "portfolio"
+    }
+  }

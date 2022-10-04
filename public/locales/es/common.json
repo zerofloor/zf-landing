@@ -1,0 +1,25 @@
+{
+  "home": {
+    "A crypto native": "Un fondo de inversion descentralizado",
+    "web3 fund": "en web3",
+    "Home description": "Nuestro equipo se especializa en gestión de activos digitales, diseño de tokens, redes descentralizadas, investigación, estrategia de marca y regulación.",
+    "Assets Under Management": "Activos Bajo Gestión",
+    "ZSL Price": "Precio ZSL",
+    "Return of Investment": "Retorno de Invesión",
+    "Across": "A través de empresas en etapas iniciales, de riesgo y líquidas, zerofloor se asocia con los principales líderes del mercado web3.",
+    "updates": "actualizaciones",
+    "see more updates": "ver más actualizaciones",
+    "portfolio": "portfolio",
+    "see more portfolio": "ver todo el portfolio"
+  },
+  "contact": {
+    "do you want to start investing?": "quieres empezar a invertir con nosotros?",
+    "send us a message": "envíanos un dm"
+  },
+  "menu": {
+    "Home": "inicio",
+    "Dashboard": "panel",
+    "Updates": "informes",
+    "Portfolio": "portfolio"
+  }
+}

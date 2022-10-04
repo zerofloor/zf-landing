@@ -27,6 +27,6 @@ export async function getStaticProps( { locale} : {locale: any} ) {
       ...(await serverSideTranslations(locale, ["common"])),
       posts: postsResponse.results,
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 }

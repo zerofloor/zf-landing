@@ -48,6 +48,6 @@ export async function getStaticProps( { locale} : {locale: any} ) {
       ...(await serverSideTranslations(locale, ["common"])),
       portfolio: portfolioResponse.results,
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 }

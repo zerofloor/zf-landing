@@ -212,6 +212,6 @@ export async function getStaticProps( { locale} : {locale: any} ) {
         roi: roiNumber,
       },
     },
-    revalidate: 60,
+    // revalidate: 60,
   };
 }

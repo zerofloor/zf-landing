@@ -180,7 +180,7 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, locale = "en" }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pageId: any = params!.id;
   const notion = new Client({ auth: process.env.NOTION_KEY });
 

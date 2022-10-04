@@ -48,6 +48,7 @@ const VerticalNav = ({
         >
           {t("menu.Dashboard")}
         </a>
+        <div className="border-t-1 h-6 w-4/5 sm:w-5/24 mt-18 border-neutral-600" />
         <LocaleSwitcher />
       </div>
     </div>

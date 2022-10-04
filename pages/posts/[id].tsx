@@ -179,7 +179,7 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ( {params, locale}: {params?: any; locale: any;}) => {
+export const getStaticProps = async ( {params, locale}: {params?: any; locale: any;}) => {
   const pageId: any = params!.id;
   const notion = new Client({ auth: process.env.NOTION_KEY });
 

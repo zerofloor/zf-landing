@@ -157,7 +157,7 @@ const Post = ({
 
 export default Post;
 
-export async function getStaticPaths() {
+export async function getStaticPaths( { locale } : { locale: any; }  ) {
   //   const paths = getAllPostIds();
   const notion = new Client({ auth: process.env.NOTION_KEY });
   const postsResponse = await notion.databases.query({

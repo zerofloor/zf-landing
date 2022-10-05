@@ -31,7 +31,7 @@ const VerticalNav = ({
         <StyledLink setMenuOpen={setMenuOpen} href="/">
         {t("menu.Home")}
         </StyledLink>
-        <StyledLink setMenuOpen={setMenuOpen} href="/posts">
+        <StyledLink setMenuOpen={setMenuOpen} href="/fund">
         {t("menu.Fund")}
         </StyledLink>
         <StyledLink setMenuOpen={setMenuOpen} href="/portfolio">

@@ -175,6 +175,7 @@ export async function getStaticPaths( { locale } : { locale: any; }  ) {
     };
   });
   return {
+    locale,
     paths,
     fallback: "blocking",
   };

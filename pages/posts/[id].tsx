@@ -157,7 +157,7 @@ const Post = ({
 
 export default Post;
 
-export async function getStaticPaths( { locale } : { locale: any; }  ) {
+export async function getStaticPaths( { locales } : { locales: any; }  ) {
   //   const paths = getAllPostIds();
   const notion = new Client({ auth: process.env.NOTION_KEY });
   const postsResponse = await notion.databases.query({
@@ -168,14 +168,12 @@ export async function getStaticPaths( { locale } : { locale: any; }  ) {
     console.log(res.id);
     return {
       params: {
-        // id: res.properties.Name.title[0].plain_text.split(" ").join("-"),
-        locale,
+        // id: res.properties.Name.title[0].plain_text.split(" ").join("-"),\
         id: res.id,
       },
     };
   });
   return {
-    locale,
     paths,
     fallback: "blocking",
   };

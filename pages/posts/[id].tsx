@@ -168,6 +168,7 @@ export async function getStaticPaths( { locales } : { locales: any; }  ) {
     console.log(res.id);
     return {
       params: {
+        locales,
         // id: res.properties.Name.title[0].plain_text.split(" ").join("-"),\
         id: res.id,
       },

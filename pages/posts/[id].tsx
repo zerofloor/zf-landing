@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { GetStaticProps } from "next";
+import type { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import Image from 'next/image';
@@ -157,22 +157,32 @@ const Post = ({
 
 export default Post;
 
-export async function getStaticPaths( { locales } : { locales: any; }  ) {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   //   const paths = getAllPostIds();
   const notion = new Client({ auth: process.env.NOTION_KEY });
   const postsResponse = await notion.databases.query({
     database_id: process.env.NOTION_POSTS_DATABASE_ID!,
   });
   const results: any = postsResponse.results;
-  const paths = results.map((res: { [key: string]: any }) => {
+  const paths = results.flatMap((res: { [key: string]: any }) => {
     console.log(res.id);
-    return {
-      params: {
-        locales,
-        // id: res.properties.Name.title[0].plain_text.split(" ").join("-"),\
-        id: res.id,
-      },
-    };
+    if (locales) {
+      return locales.map((locale) => {
+        return {
+          params: {
+            id: res.id,
+          },
+          locale,
+        };
+      });
+    } else {
+      return {
+        params: {
+          // id: res.properties.Name.title[0].plain_text.split(" ").join("-"),\
+          id: res.id,
+        },
+      };
+    }
   });
   return {
     paths,
@@ -180,7 +190,7 @@ export async function getStaticPaths( { locales } : { locales: any; }  ) {
   };
 }
 
-export const getStaticProps = async ( {params, locale}: {params?: any; locale: any;}) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const pageId: any = params!.id;
   const notion = new Client({ auth: process.env.NOTION_KEY });
 
@@ -211,7 +221,7 @@ export const getStaticProps = async ( {params, locale}: {params?: any; locale: a
   });
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      ...(await serverSideTranslations(locale || "default", ["common"])),
       postProperties: postProperties,
       pageId: pageId,
       postData: postData,

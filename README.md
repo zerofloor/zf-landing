@@ -1,4 +1,4 @@
-This the [zerofloor.xyz](https://zerofloor.xyz/) landing page bootstrapped with Next.js and connected to [smartfunds.xyz](https://smartfunds.xyz/).
+This the [zerofloor.xyz](https://zerofloor.xyz/) landing page bootstrapped with Next.js and connected to [smartfunds.xyz](https://smartfunds.xyz/) and [dYdX Exchange](https://trade.dydx.exchange/).
 
 ## Getting Started
 

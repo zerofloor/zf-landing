@@ -112,7 +112,7 @@ const Home = ({
       <Portfolio portfolio={portfolio} />
       <Link href="/portfolio">
         <a className="mt-4 text-gray-300 flex items-center gap-x-2 underline">
-        {t("home.see more portfolio")} <BsArrowRight />
+        {/* {t("home.see more portfolio")} <BsArrowRight /> */}
         </a>
       </Link>
       <Contact />

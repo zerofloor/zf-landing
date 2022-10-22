@@ -17,8 +17,8 @@ const FundPage = ({
       
       <div className="flex flex-col w-full items-center mt-8">
         <h1 className="mb-3">fund</h1>
-        
-        <Fund fund={fund} />
+        <h2 className="mb-3">coming soon...</h2>
+        {/* <Fund fund={fund} /> */}
       </div>
       
       {/* <a

@@ -6,7 +6,7 @@ const Contact = () => {
   const { t } = useTranslation("");
   return (
     <>
-      <h1 className="text-xl mt-36 mb-5">{t("contact.do you want to start investing?")}</h1>
+      <h1 className="text-xl mt-36 mb-5 items-center justify-center">{t("contact.do you want to start investing?")}</h1>
       <a
         target="_blank"
         rel="noreferrer"

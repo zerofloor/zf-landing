@@ -46,8 +46,8 @@ const FundPage = ({
 
         </div>
           <div className="pl-1 pt-1 h-auto  text-green-200 font-mono text-s bg-black" id="console">
-          <p className="pb-1">Last login: {date.toUTCString()}</p>
-          <p className="pb-1">fund@zerofloor performance$ ./results</p>
+          <p className="pb-1 pt-2">{date.toUTCString()}</p>
+          {/* <p className="pb-1">fund@zerofloor performance$ ./results</p> */}
           <p className="pb-10"></p>
           <p className="pb-1"><span className="
             from-purple-400 
@@ -83,6 +83,20 @@ const FundPage = ({
             bg-gradient-to-r">ZSL dYdX Trading (last 30 days)</span></p>
           <p className="pb-1 text-white">Profit & Loss: <span className="pb-1 text-green-400">$2,123 (+0.02%)</span></p>
           <p className="pb-1 text-white">Volume traded: <span className="pb-1 text-green-400">$6,195,877</span></p>
+          <p className="pb-10"></p>
+          <p className="pb-1"><span className="
+            from-purple-400 
+            to-pink-600 
+            bg-clip-text
+            font-extrabold
+            text-transparent
+            bg-gradient-to-r">ZSL Fund Conditions</span></p>
+          <p className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2%</span></p>
+          <p className="pb-1 text-white">Performance Fee: <span className="pb-1 text-white ">20%</span></p>
+          <p className="pb-1 text-white">Token Symbol: <span className="pb-1 text-white ">ZSL</span></p>
+          <p className="pb-1 text-white">Contract Address: <span className="pb-1 text-white ">0x2347...dc89</span></p>
+          <p className="pb-1 text-white">Manager Address: <span className="pb-1 text-white ">0x5d54...d7bc</span></p>
+          <p className="pb-1 text-white">Fee Beneficiary: <span className="pb-1 text-white ">0x0000...0000</span></p>
         </div>
       </div> 
       </div>

@@ -7,7 +7,6 @@ import Contact from "../components/Home/Contact/Contact";
 import userData from "../components/userData";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
-// import Stats from "../components/Home/Stats/Stats";
 import BigNumber from "bignumber.js";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -19,7 +18,6 @@ const Home = ({
 }: {
   posts: Array<{ [key: string]: any }>;
   portfolio: Array<{ [key: string]: any }>;
-  stats: Array<{ [key: string]: any }>;
   fundData: {
     aum: number;
     totalCapitalContributed: number;

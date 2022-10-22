@@ -7,6 +7,7 @@ const Fund = ({
 }) => {
   return (
     <>
+    
       {fund.map((fund_item, index) => {
         return <FundCard key={index} fund_item={fund_item} />;
       })}

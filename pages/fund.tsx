@@ -13,6 +13,7 @@ const date = new Date();
 const FundPage = ({
   fund,
   fundData,
+  dYdXData,
 }: {
   fund: Array<{ [key: string]: any }>;
   fundData: {
@@ -20,6 +21,11 @@ const FundPage = ({
     totalCapitalContributed: number;
     currentPrice: number;
     roi: number;
+  };
+  dYdXData: {
+    absolutePnl30D: number;
+    percentPnl30D: number;
+    volume30D: number;
   };
 }) => {
   const { t } = useTranslation();
@@ -75,6 +81,12 @@ const FundPage = ({
                 style: "percent",
                 maximumFractionDigits: 2,
               })}</span></p>
+          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Current Token Price (ZSL): <span className="pb-1 text-red-400">
+            {fundData.currentPrice.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 3,
+            })}</span></p>
           <p className="pb-10"></p>
           <p className="pb-1"><span className="
             from-purple-400 
@@ -89,6 +101,7 @@ const FundPage = ({
           <p className="pb-1 text-white">Minimum Investment Amount: <span className="pb-1 text-white ">$10</span></p>
           <p className="pb-1 text-white">Investment Lockup: <span className="pb-1 text-white ">No</span></p>
           <p className="pb-1 text-white">Token Symbol: <span className="pb-1 text-white ">ZSL</span></p>
+          <p data-tip="The price increases accordingly as the fund's NAV grows." className="pb-1 text-white">Initial Token Price: <span className="pb-1 text-white ">$0.01</span></p>
           <p className="pb-1 text-white">Contract Address: <span className="pb-1 text-white ">0x2347...dc89</span></p>
           <p className="pb-1 text-white">Manager Address: <span className="pb-1 text-white ">0x5d54...d7bc</span></p>
           <p className="pb-1 text-white">Fee Beneficiary: <span className="pb-1 text-white ">0x0000...0000</span></p>
@@ -99,8 +112,23 @@ const FundPage = ({
             bg-clip-text
             font-extrabold
             text-transparent">ZSL dYdX Trading (last 30 days)</span></p>
-          <p className="pb-1 text-white">Profit & Loss: <span className="pb-1 text-green-400">$2,123 (+0.02%)</span></p>
-          <p className="pb-1 text-white">Volume traded: <span className="pb-1 text-green-400">$6,195,877</span></p>
+          <p className="pb-1 text-white">Profit & Loss: <span className="pb-1 text-green-400">
+          {dYdXData.absolutePnl30D.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 0,
+            })} ({dYdXData.percentPnl30D.toLocaleString("en-US", {
+              style: "percent",
+              currency: "USD",
+              maximumFractionDigits: 2,
+            })})</span></p>
+          <p className="pb-1 text-white">Volume traded: <span className="pb-1">
+            {dYdXData.volume30D.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 0,
+            })}</span></p>
+
           <p className="pb-10"></p>
       </div> 
       </div>
@@ -133,6 +161,8 @@ export async function getStaticProps( { locale} : {locale: any} ) {
       },
     ],
   });
+
+  // Smartfund integration
   const resp = await fetch(
     "https://api.thegraph.com/subgraphs/name/smart-money-finance/smartfunds-v2-polygon",
     {
@@ -175,6 +205,21 @@ export async function getStaticProps( { locale} : {locale: any} ) {
   const totalCapitalContributedNumber = totalCapitalContributedBN.toNumber();
   const currentPriceNumber = currentPriceBN.toNumber();
   const roiNumber = roiBN.toNumber();
+
+
+  // Smartfund integration
+  const dydx_resp = await fetch(
+      "https://api.dydx.exchange/v3/profile/ELDGHYWS",
+      {
+        method: "GET",
+      }
+    );
+  
+    const dydxRespJson = await dydx_resp.json();
+    console.log(dydxRespJson);
+    // const { absolutePnl30D, percentPnl30D, volume30D } = dydxRespJson.tradingPnls[0];
+    // console.log(absolutePnl30D, percentPnl30D, volume30D);
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
@@ -183,6 +228,11 @@ export async function getStaticProps( { locale} : {locale: any} ) {
         totalCapitalContributed: totalCapitalContributedNumber,
         currentPrice: currentPriceNumber,
         roi: roiNumber,
+      },
+      dYdXData: {
+        absolutePnl30D: Number(dydxRespJson.tradingPnls.absolutePnl30D),
+        percentPnl30D: Number(dydxRespJson.tradingPnls.percentPnl30D),
+        volume30D: Number(dydxRespJson.tradingPnls.volume30D),
       },
     },
     // revalidate: 60,

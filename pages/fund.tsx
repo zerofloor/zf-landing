@@ -21,6 +21,7 @@ const FundPage = ({
     totalCapitalContributed: number;
     currentPrice: number;
     roi: number;
+    currentProfit: number;
   };
   dYdXData: {
     absolutePnl30D: number;
@@ -64,24 +65,30 @@ const FundPage = ({
             font-extrabold
             text-transparent
             bg-gradient-to-r">ZSL Fund Performance</span></p>
-            <p data-tip="Total amount of money that shareholders invested in the fund" className="pb-1 text-white">Total Capital Contributed: <span className="pb-1 text-white">
+            <p data-tip="Total amount of money that shareholders invested in the fund" className="pb-1 text-white">Current Investments: <span className="pb-1 text-white font-extrabold">
             {fundData.totalCapitalContributed.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
               maximumFractionDigits: 0,
             })}</span></p>
-          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Assets Under Management (AUM): <span className="pb-1 text-red-400">
+          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Current Value (AUM): <span className="pb-1 text-green-400">
             {fundData.aum.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
               maximumFractionDigits: 0,
             })}</span></p>
-          <p className="pb-1 text-white">Return Of Investment (ROI): <span className="pb-1 text-red-400">
+          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Current Profit: <span className="pb-1 text-green-400">
+            {fundData.currentProfit.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 0,
+            })}</span></p>
+          <p className="pb-1 text-white">Return Of Investment (ROI): <span className="pb-1 text-green-400">
             {fundData.roi.toLocaleString("en-US", {
                 style: "percent",
                 maximumFractionDigits: 2,
               })}</span></p>
-          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Current Token Price (ZSL): <span className="pb-1 text-red-400">
+          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Current Token Price (ZSL): <span className="pb-1 text-green-400">
             {fundData.currentPrice.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
@@ -96,7 +103,7 @@ const FundPage = ({
             text-transparent
             bg-gradient-to-r">ZSL Fund Conditions</span></p>
             <ReactTooltip place="bottom" effect="solid" arrowColor="black" type="dark" textColor="black" backgroundColor="white" />
-          <p className="pb-1 text-white">Inception Date: <span className="pb-1 text-white ">19 Apr 2022 09:25:25 GMT</span></p>
+          <p className="pb-1 text-white">Inception Date: <span className="pb-1 text-white ">19 Apr 2022</span></p>
           <p className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2% Anually</span></p>
           <p data-tip="Investors pay a percentage of profits to Fund Managers when exiting a fund." className="pb-1 text-white">Performance Fee: <span className="pb-1 text-white ">20%</span></p>
           <p className="pb-1 text-white">Minimum Investment Amount: <span className="pb-1 text-white ">$10</span></p>
@@ -229,6 +236,7 @@ export async function getStaticProps( { locale} : {locale: any} ) {
         totalCapitalContributed: totalCapitalContributedNumber,
         currentPrice: currentPriceNumber,
         roi: roiNumber,
+        currentProfit: aumNumber - totalCapitalContributedNumber,
       },
       dYdXData: {
         absolutePnl30D: Number(dydxRespJson.tradingPnls.absolutePnl30D),

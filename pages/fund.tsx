@@ -1,10 +1,12 @@
 import { Client } from "@notionhq/client";
 import Head from "next/head";
-import Fund from "../components/Home/Fund/Fund";
+// import Fund from "../components/Home/Fund/Fund";
 import userData from "../components/userData";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import BigNumber from "bignumber.js";
 import { useTranslation } from "next-i18next";
+import ReactTooltip from 'react-tooltip';
+
 
 const date = new Date();
 
@@ -91,8 +93,11 @@ const FundPage = ({
             font-extrabold
             text-transparent
             bg-gradient-to-r">ZSL Fund Conditions</span></p>
-          <p className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2%</span></p>
-          <p className="pb-1 text-white">Performance Fee: <span className="pb-1 text-white ">20%</span></p>
+            <ReactTooltip/>
+          <p data-tip="Percent of capital contributed paid to the manager yearly" className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2%</span></p>
+          <p data-tip="Investors pay a percentage of profits to Fund Managers when exiting a fund." className="pb-1 text-white">Performance Fee: <span className="pb-1 text-white ">20%</span></p>
+          <p className="pb-1 text-white">Minimum Investment Amount: <span className="pb-1 text-white ">10 USDC</span></p>
+          <p className="pb-1 text-white">Investment Lockup: <span className="pb-1 text-white ">No</span></p>
           <p className="pb-1 text-white">Token Symbol: <span className="pb-1 text-white ">ZSL</span></p>
           <p className="pb-1 text-white">Contract Address: <span className="pb-1 text-white ">0x2347...dc89</span></p>
           <p className="pb-1 text-white">Manager Address: <span className="pb-1 text-white ">0x5d54...d7bc</span></p>

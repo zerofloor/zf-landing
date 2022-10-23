@@ -58,13 +58,13 @@ const FundPage = ({
             font-extrabold
             text-transparent
             bg-gradient-to-r">ZSL Fund Performance</span></p>
-            <p className="pb-1 text-white">Total Capital Contributed: <span className="pb-1 text-white">
+            <p data-tip="Total amount of money that shareholders invest in the fund" className="pb-1 text-white">Total Capital Contributed: <span className="pb-1 text-white">
             {fundData.totalCapitalContributed.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
               maximumFractionDigits: 0,
             })}</span></p>
-          <p className="pb-1 text-white">Assets Under Management (AUM): <span className="pb-1 text-red-400">
+          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Assets Under Management (AUM): <span className="pb-1 text-red-400">
             {fundData.aum.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
@@ -82,27 +82,26 @@ const FundPage = ({
             bg-clip-text
             font-extrabold
             text-transparent
-            bg-gradient-to-r">ZSL dYdX Trading (last 30 days)</span></p>
-          <p className="pb-1 text-white">Profit & Loss: <span className="pb-1 text-green-400">$2,123 (+0.02%)</span></p>
-          <p className="pb-1 text-white">Volume traded: <span className="pb-1 text-green-400">$6,195,877</span></p>
-          <p className="pb-10"></p>
-          <p className="pb-1"><span className="
-            from-purple-400 
-            to-pink-600 
-            bg-clip-text
-            font-extrabold
-            text-transparent
             bg-gradient-to-r">ZSL Fund Conditions</span></p>
-            <ReactTooltip/>
+            <ReactTooltip place="bottom" effect="solid" arrowColor="black" type="dark" textColor="black" backgroundColor="white" />
           <p data-tip="Percent of capital contributed paid to the manager yearly" className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2%</span></p>
           <p data-tip="Investors pay a percentage of profits to Fund Managers when exiting a fund." className="pb-1 text-white">Performance Fee: <span className="pb-1 text-white ">20%</span></p>
-          <p className="pb-1 text-white">Minimum Investment Amount: <span className="pb-1 text-white ">10 USDC</span></p>
+          <p className="pb-1 text-white">Minimum Investment Amount: <span className="pb-1 text-white ">$10</span></p>
           <p className="pb-1 text-white">Investment Lockup: <span className="pb-1 text-white ">No</span></p>
           <p className="pb-1 text-white">Token Symbol: <span className="pb-1 text-white ">ZSL</span></p>
           <p className="pb-1 text-white">Contract Address: <span className="pb-1 text-white ">0x2347...dc89</span></p>
           <p className="pb-1 text-white">Manager Address: <span className="pb-1 text-white ">0x5d54...d7bc</span></p>
           <p className="pb-1 text-white">Fee Beneficiary: <span className="pb-1 text-white ">0x0000...0000</span></p>
         </div>
+        <p className="pb-10"></p>
+          <p className="pb-1"><span className="
+            bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
+            bg-clip-text
+            font-extrabold
+            text-transparent">ZSL dYdX Trading (last 30 days)</span></p>
+          <p className="pb-1 text-white">Profit & Loss: <span className="pb-1 text-green-400">$2,123 (+0.02%)</span></p>
+          <p className="pb-1 text-white">Volume traded: <span className="pb-1 text-green-400">$6,195,877</span></p>
+          <p className="pb-10"></p>
       </div> 
       </div>
         

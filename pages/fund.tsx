@@ -64,7 +64,7 @@ const FundPage = ({
             font-extrabold
             text-transparent
             bg-gradient-to-r">ZSL Fund Performance</span></p>
-            <p data-tip="Total amount of money that shareholders invest in the fund" className="pb-1 text-white">Total Capital Contributed: <span className="pb-1 text-white">
+            <p data-tip="Total amount of money that shareholders invested in the fund" className="pb-1 text-white">Total Capital Contributed: <span className="pb-1 text-white">
             {fundData.totalCapitalContributed.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
@@ -96,7 +96,8 @@ const FundPage = ({
             text-transparent
             bg-gradient-to-r">ZSL Fund Conditions</span></p>
             <ReactTooltip place="bottom" effect="solid" arrowColor="black" type="dark" textColor="black" backgroundColor="white" />
-          <p data-tip="Percent of capital contributed paid to the manager yearly" className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2%</span></p>
+          <p className="pb-1 text-white">Inception Date: <span className="pb-1 text-white ">19 Apr 2022 09:25:25 GMT</span></p>
+          <p className="pb-1 text-white">Management Fee: <span className="pb-1 text-white">2% Anually</span></p>
           <p data-tip="Investors pay a percentage of profits to Fund Managers when exiting a fund." className="pb-1 text-white">Performance Fee: <span className="pb-1 text-white ">20%</span></p>
           <p className="pb-1 text-white">Minimum Investment Amount: <span className="pb-1 text-white ">$10</span></p>
           <p className="pb-1 text-white">Investment Lockup: <span className="pb-1 text-white ">No</span></p>

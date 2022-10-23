@@ -23,6 +23,7 @@ const Home = ({
     totalCapitalContributed: number;
     currentPrice: number;
     roi: number;
+    currentProfits: number;
   };
 }) => {
   const { t } = useTranslation();
@@ -69,14 +70,14 @@ const Home = ({
           <div className="w-56 h-1 transition duration-300 transform bg-gray-300 rounded-full group-hover:bg-deep-purple-accent-400 group-hover:scale-110 sm:h-auto sm:w-1" />
           <div className="px-12 py-8 text-center">
             <h6 className="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl">
-            {fundData.currentPrice.toLocaleString("en-US", {
+            {fundData.currentProfits.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
-              maximumFractionDigits: 4,
+              maximumFractionDigits: 0,
             })}
             </h6>
             <p className="text-center md:text-base">
-            {t("home.ZSL Price")}
+            {t("home.Current Profits")}
             </p>
           </div>
           <div className="w-56 h-1 transition duration-300 transform bg-gray-300 rounded-full group-hover:bg-deep-purple-accent-400 group-hover:scale-110 sm:h-auto sm:w-1" />
@@ -208,6 +209,7 @@ export async function getStaticProps( { locale} : {locale: any} ) {
         totalCapitalContributed: totalCapitalContributedNumber,
         currentPrice: currentPriceNumber,
         roi: roiNumber,
+        currentProfits: aumNumber - totalCapitalContributedNumber,
       },
     },
     // revalidate: 60,

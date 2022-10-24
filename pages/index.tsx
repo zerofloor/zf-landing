@@ -108,7 +108,7 @@ const Home = ({
         </a>
       </Link>
       <span className="text-sm mt-24 mb-3">{t("home.portfolio")}</span>
-      <Portfolio portfolio={portfolio} />
+      <Portfolio />
       <Link href="/portfolio">
         <a className="mt-4 text-gray-300 flex items-center gap-x-2 underline">
         {/* {t("home.see more portfolio")} <BsArrowRight /> */}

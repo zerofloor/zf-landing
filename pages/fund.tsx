@@ -1,6 +1,4 @@
-import { Client } from "@notionhq/client";
 import Head from "next/head";
-// import Fund from "../components/Home/Fund/Fund";
 import userData from "../components/userData";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import BigNumber from "bignumber.js";
@@ -11,11 +9,9 @@ import ReactTooltip from 'react-tooltip';
 const date = new Date();
 
 const FundPage = ({
-  fund,
   fundData,
   dYdXData,
 }: {
-  fund: Array<{ [key: string]: any }>;
   fundData: {
     aum: number;
     totalCapitalContributed: number;
@@ -37,9 +33,6 @@ const FundPage = ({
       </Head>
       
       <div className="flex flex-col w-full items-center mt-8">
-        {/* <h1 className="mb-3">fund</h1> */}
-        {/* <h2 className="mb-3">coming soon...</h2> */}
-        {/* <Fund fund={fund} /> */}
         <div className="mt-6 sm:ml-12 sm:mt-12 flex flex-col gap-y-1 w-10/12  sm:w-3/5 md:w-1/2">
           <div className="w-full shadow-2xl subpixel-antialiased rounded h-64 bg-black border-black mx-auto">
             <div className="flex items-center h-6 rounded-t bg-gray-100 border-b border-gray-500 text-center text-black" id="headerTerminal">
@@ -77,7 +70,7 @@ const FundPage = ({
               currency: "USD",
               maximumFractionDigits: 0,
             })}</span></p>
-          <p data-tip="Total market value of the fund investments" className="pb-1 text-white">Current Profit: <span className="pb-1 text-green-400">
+          <p className="pb-1 text-white">Current Profit: <span className="pb-1 text-green-400">
             {fundData.currentProfit.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
@@ -142,33 +135,12 @@ const FundPage = ({
       </div>
         
       </div>
-      
-      
-      {/* <a
-        href={userData.github}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-10 text-gray-300 text-sm underline"
-      >
-        view more on my github <BsGithub className="inline" />
-      </a> */}
     </>
   );
 };
 export default FundPage;
 
 export async function getStaticProps( { locale} : {locale: any} ) {
-  const notion = new Client({ auth: process.env.NOTION_KEY });
-
-  const fundResponse = await notion.databases.query({
-    database_id: process.env.NOTION_PORTFOLIO_DATABASE_ID!,
-    sorts: [
-      {
-        property: "Rank",
-        direction: "ascending",
-      },
-    ],
-  });
 
   // Smartfund integration
   const resp = await fetch(
@@ -224,9 +196,7 @@ export async function getStaticProps( { locale} : {locale: any} ) {
     );
   
     const dydxRespJson = await dydx_resp.json();
-    console.log(dydxRespJson);
-    // const { absolutePnl30D, percentPnl30D, volume30D } = dydxRespJson.tradingPnls[0];
-    // console.log(absolutePnl30D, percentPnl30D, volume30D);
+
 
   return {
     props: {

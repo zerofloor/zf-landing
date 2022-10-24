@@ -1,9 +1,6 @@
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 
 const Portfolio = ({
-  portfolio,
 }: {
-  portfolio: Array<{ [key: string]: any }>;
 }) => {
   return (
     <>
@@ -11,7 +8,7 @@ const Portfolio = ({
       style={{ maxWidth: "60%" }}
       className="flex justify-center flex-wrap gap-x-4 gap-y-3 mt-12 mb-4 "
     >
-      <div className="relative cursor-pointer flex mb-2 mt-2 items-center justify-center text-lg leading-5">
+      <div className="relatisve cursor-pointer flex mb-2 mt-2 items-center justify-center text-lg leading-5">
       {/* eslint-disable @next/next/no-img-element */}
         <img src="../images/bitcoin.png" className="w-28" alt="bitoin" />
       </div>
